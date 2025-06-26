@@ -185,10 +185,10 @@ export default function Portfolio() {
               <div className="w-full h-96 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-2xl p-1">
                 <div className="w-full h-full bg-black rounded-2xl flex items-center justify-center">
                   <Image
-                    src="/kall.jpg?height=350&width=350"
+                    src="/kallista.jpg?height=350&width=350"
                     alt="Designer"
-                    width={350}
-                    height={350}
+                    width={550}
+                    height={750}
                     className="rounded-xl"
                   />
                 </div>
