@@ -213,7 +213,7 @@ export default function Portfolio() {
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-lg">
                     <Image
-                      src={project.image || "/kall.jpg"}
+                      src={project.image || "/kallista.jpg"}
                       alt={project.title}
                       width={400}
                       height={300}
