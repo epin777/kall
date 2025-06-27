@@ -135,10 +135,20 @@ export default function Portfolio() {
             Bringing ideas to life through vibrant colors, bold designs, and innovative solutions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8 py-3 rounded-full text-lg">
+            <Button
+              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8 py-3 rounded-full text-lg"
+              onClick={() => {
+                document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
               View My Work
             </Button>
-            <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8 py-3 rounded-full text-lg">
+            <Button
+              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8 py-3 rounded-full text-lg"
+              onClick={() => {
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
               Get In Touch
             </Button>
           </div>
