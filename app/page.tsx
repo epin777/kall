@@ -11,6 +11,8 @@ import Image from "next/image"
 export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<null | typeof projects[0]>(null)
 
   useEffect(() => {
     setIsLoaded(true)
@@ -202,37 +204,75 @@ export default function Portfolio() {
       <section id="portfolio" className="py-20 relative">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-            My Portfolio
+        My Portfolio
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="bg-gray-900/50 border-gray-700 hover:border-transparent hover:bg-gradient-to-br hover:from-pink-500/20 hover:to-cyan-500/20 transition-all duration-300 group cursor-pointer transform hover:scale-105"
-              >
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <Image
-                      src={project.image || "/kallista.jpg"}
-                      alt={project.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="p-6">
-                    <Badge className="mb-3 bg-gradient-to-r from-purple-500 to-pink-500">{project.category}</Badge>
-                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-cyan-500 group-hover:bg-clip-text transition-all duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400">{project.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            className="bg-gray-900/50 border-gray-700 hover:border-transparent hover:bg-gradient-to-br hover:from-pink-500/20 hover:to-cyan-500/20 transition-all duration-300 group cursor-pointer transform hover:scale-105"
+            onClick={() => {
+          setSelectedProject(project)
+          setShowModal(true)
+            }}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            setSelectedProject(project)
+            setShowModal(true)
+          }
+            }}
+          >
+            <CardContent className="p-0">
+          <div className="relative overflow-hidden rounded-t-lg">
+            <Image
+              src={project.image || "/kallista.jpg"}
+              alt={project.title}
+              width={400}
+              height={300}
+              className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
+          <div className="p-6">
+            <Badge className="mb-3 bg-gradient-to-r from-purple-500 to-pink-500">{project.category}</Badge>
+            <h3 className="text-xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-cyan-500 group-hover:bg-clip-text transition-all duration-300">
+              {project.title}
+            </h3>
+            <p className="text-gray-400">{project.description}</p>
+          </div>
+            </CardContent>
+          </Card>
+        ))}
           </div>
         </div>
+        {/* Modal for full image */}
+        {showModal && selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+        <div className="relative bg-black rounded-xl shadow-lg max-w-sm w-full p-2">
+          <button
+            className="absolute top-1 right-1 text-white bg-gray-800 rounded-full p-1 hover:bg-gray-700"
+            onClick={() => setShowModal(false)}
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <Image
+            src={selectedProject.image || "/kallista.jpg"}
+            alt={selectedProject.title}
+            width={320}
+            height={220}
+            className="w-full h-auto rounded-lg object-contain"
+            priority
+          />
+          <div className="mt-4 text-center">
+            <h3 className="text-2xl font-bold mb-2 text-white">{selectedProject.title}</h3>
+            <p className="text-gray-400">{selectedProject.description}</p>
+          </div>
+        </div>
+          </div>
+        )}
       </section>
 
       {/* Skills Section */}
