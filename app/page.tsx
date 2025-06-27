@@ -182,10 +182,10 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-2xl p-1">
+              <div className="w-full h-full bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-2xl">
                 <div className="w-full h-full bg-black rounded-2xl flex items-center justify-center">
                   <Image
-                    src="/kallista.jpg?height=350&width=350"
+                    src="/kallista.jpg?height=550&width=350"
                     alt="Designer"
                     width={550}
                     height={750}
@@ -285,12 +285,18 @@ export default function Portfolio() {
           >
             <Github size={20} />
           </Button> */}
-          <Button
-            size="icon"
-            className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
+          <a
+            href="https://www.linkedin.com/in/kallista-abigail-103526315/?originalSubdomain=id"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Linkedin size={20} />
-          </Button>
+            <Button
+              size="icon"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
+            >
+              <Linkedin size={20} />
+            </Button>
+          </a>
             <a
             href="https://www.instagram.com/kallistaabigail/"
             target="_blank"
